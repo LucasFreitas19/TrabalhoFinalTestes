@@ -21,7 +21,7 @@ public class BuyProcessSauceLabsOnesieWithDetails extends Framework.Test {
 
         try {
 
-            Report.startReport("Realizar Login de Usuário");
+            Report.startReport("Realizar Processo de Compras");
             loginTask.RealizeLogin();
             loginTask.SignIn();
             productsTask.GoToSauceLabsDetails();

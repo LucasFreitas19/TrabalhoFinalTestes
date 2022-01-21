@@ -2,8 +2,11 @@ package Tasks;
 
 import Framework.Browser.Waits;
 import Framework.Report.Report;
+import Framework.Report.Screenshot;
 import Pages.CheckoutPage;
 import Pages.ProductsPage;
+import com.aventstack.extentreports.Status;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
 public class CheckoutTask {
@@ -30,6 +33,17 @@ public class CheckoutTask {
 
         waits.loadElement(checkoutPage.GetCheckoutButton());
         checkoutPage.GetCheckoutButton().click();
+        validarGoToShopping();
 
+    }
+
+    private void validarGoToShopping() {
+        try {
+            Assertions.assertTrue(checkoutPage.GetCheckoutButton().isDisplayed());
+            Report.extentTest.log(Status.PASS, "CHECKOUT  COM SUCESSO", Screenshot.capture(browser));
+        } catch (Exception e) {
+
+            Report.extentTest.log(Status.FAIL, "NAO CHECKOUT " + e.getMessage(), Screenshot.capture(browser));
+        }
     }
 }

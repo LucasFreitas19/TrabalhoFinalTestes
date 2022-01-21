@@ -1,5 +1,6 @@
 package Test;
 
+import Framework.Browser.Waits;
 import Framework.Report.Report;
 import Framework.Report.Screenshot;
 import Tasks.*;
@@ -15,13 +16,14 @@ public class BuyProcessBackpackWithShoppingCart extends Framework.Test {
     private CheckoutTask checkoutTask = new CheckoutTask(browser);
     private ZipInformationTask zipInformationTask = new ZipInformationTask(browser);
     private LogoutTask logoutTask = new LogoutTask(browser);
+    private Waits waits = new Waits(browser);
 
     @Test
     public void ProcessoDeCompra(){
 
         try {
 
-            Report.startReport("Realizar Login de Usuário");
+            Report.startReport("Realizar Processo de compras");
             loginTask.RealizeLogin();
             loginTask.SignIn();
             productsTask.AddBackpackToShopping();

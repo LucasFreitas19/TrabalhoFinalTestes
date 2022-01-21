@@ -30,9 +30,11 @@ public class LoginTask {
 
     public void RealizeLogin() {
 
+        waits.loadElement(loginPage.GetUsename());
         loginPage.GetUsename().sendKeys(fakeLogin.getUsername());
         waits.loadElement(loginPage.GetPassword());
         loginPage.GetPassword().sendKeys(fakeLogin.getPassword());
+        validarLogin();
 
     }
 
@@ -44,11 +46,22 @@ public class LoginTask {
 
         }
 
+    private void validarLogin() {
+        try {
+                Assertions.assertTrue(loginPage.GetLoginButton().isDisplayed());
+                Report.extentTest.log(Status.PASS, "LOGIN COM SUCESSO", Screenshot.capture(browser));
+            }catch (Exception e){
 
+                Report.extentTest.log(Status.FAIL, "NAO FOI POSSIVEL LOGAR" + e.getMessage(), Screenshot.capture(browser));
+            }
 
-
-
+        }
     }
+
+
+
+
+
 
 
 
